@@ -43,9 +43,10 @@ export async function POST(req) {
 
 export async function PUT(req) {
     try {
-        const { firstname,lastname, email, phone, city, state, zip} = await req.json();
+        const { firstname,lastname, email, phone, city, state, zip, oldemail} = await req.json();
+
         await connectMongoDB();
-        const user = await User.findOneAndUpdate({ email: email }, {
+        const user = await User.findOneAndUpdate({ email: oldemail }, {
             firstname: firstname,
             lastname: lastname,
             email: email,
